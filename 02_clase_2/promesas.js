@@ -9,7 +9,7 @@ let salarios = [
     { id: 2, salario : 2000 },
 ]
 
-let getEmpleado = (id,callback) => {
+let getEmpleado = (id) => {
     return new Promise( (resolve, reject ) => {
 
         let empleadoDB = empleados.find(empleado => empleado.id == id )
@@ -45,9 +45,6 @@ const getSalario = (empledo) =>
             })
         }
     })
-    
-
-    
 }
 
 getEmpleado(10).then(empleado => {
