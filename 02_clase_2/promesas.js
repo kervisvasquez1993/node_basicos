@@ -50,13 +50,13 @@ const getSalario = (empledo) =>
     
 }
 
-getEmpleado(3).then(empleado => {
-    console.log('Empleado de base de datos', empleado)
-    getSalario(empleado).then(resp => {
-        console.log(`El salario de ${resp.nombre} es de ${resp.salario}$`)
-    }, (e) => {
-        console.log(e)
-    })
-}, (err) => {
-    console.log(err)
+getEmpleado(10).then(empleado => {
+   //console.log('Empleado de base de datos', empleado)
+  return getSalario(empleado)
+})
+.then(resp => {
+    console.log(`El salario de ${resp.nombre} es de ${resp.salario}$`)
+})
+.catch(e => { 
+    console.log(e)
 })
