@@ -1,16 +1,14 @@
-const fs = require('fs');
+const {crearArchivo} = require('./multiplicar/multpiplicar');
 // const fs = require('express');
 // const fs = require('./fs');
-let base = 4
-let data = ''
+let base = 7
+/* console.log(process.argv) */
 
-for(i = 1 ; i <= 10 ; i ++)
-{   
-    let resultado = base*i
-    data += `${base} * ${i} = ${resultado} \n`
-}
+/* let argv = process.argv
+let parametro = argv[2]
+let 
+ */
 
-fs.writeFile(`tablas/tabla-${base}.txt`, data, (e) => {
-    if(e) throw e
-    console.log('el srchivo a sido creado')
-})
+crearArchivo(base)
+.then(archivo => console.log(`archivo creado ${archivo}`))
+.catch(e => console.log(e))
