@@ -29,7 +29,7 @@ const salarios = [
 
 getEmpleado = (id) => {
     return  new Promise((resolve, reject) => {
-        const empleado = empleados.find( e => e.id === id )
+        const empleado = empleados.find( e => e.id === id )?.nombre
         empleado ? 
                     resolve(empleado)
                  :  reject(`El usuario con id '${id}' no existe`)
@@ -63,3 +63,32 @@ getEmpleado = (id) => {
                   salario => console.log(salario)
               )
               .catch(e => console.log(e))
+
+              /* promesas con callback */
+
+
+
+/* getEmpleado(id)
+                .then(
+                    testEmpleado => getSalario(id)
+                                            .then(
+                                                salario =>{ console.log(`el empleado ${testEmpleado} tiene un salario de ${salario}`)}
+                                            ).catch(e => {console.log(`el empleado ${empleado} no posee un salario asignado`)})
+                                           
+                ).catch(e =>console.log(`el id '${id}' no esta asociado a ningun empleado`)) */
+
+
+                /* promesas en cadenas */
+let nombre;
+getEmpleado(id)
+            .then( empleado =>
+                { 
+                   nombre = empleado
+                   return  getSalario(id)
+                })
+                .then(
+                    salario => console.log(`empleado ${nombre}, salario ${salario}`)
+                ).catch(e => console.log(`el empleado ${nombre} no poseee salario`))
+                .catch(e => console.log(e))
+
+
