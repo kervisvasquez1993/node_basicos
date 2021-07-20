@@ -1,9 +1,11 @@
 let nombre = 'Wolverin'
+const nombre2 = 'Wolverin2' 
 
 
 if(true) {
-    nombre = 'Magneto'
-    /* console.log(nombre) */
+    /* nombre = 'Magneto' */
+    const nombre2 = "kervis"
+     console.log(nombre2) 
     
 }
 
