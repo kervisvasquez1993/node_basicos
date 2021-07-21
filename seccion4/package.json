@@ -1,0 +1,19 @@
+{
+  "name": "seccion4",
+  "version": "1.0.0",
+  "description": "esto es una prueba",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "author": "kervis vasquez",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "yargs": "^17.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
