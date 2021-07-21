@@ -14,8 +14,9 @@ const crearArchivo = async (base, listar) =>
                 console.log(multiplicarPorCinco(indice,base));
                 indice ++
             }
-            /* fs.writeFileSync(`tabla-${base}.txt`, salida) */
+            
         }
+        fs.writeFileSync(`tabla-${base}.txt`, salida) 
        
          return `Fue creado la tabla del ${base}`;  
         
