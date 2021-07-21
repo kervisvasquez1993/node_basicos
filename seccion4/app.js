@@ -1,6 +1,18 @@
 // imprimir la tabla del 5 en consola 
 const {crearArchivo} = require('./helpers/multiplicar')
-const argv = require('yargs').argv
+const argv = require('yargs')
+                    .option('b', {
+                        alias: 'base',
+                        type : 'number',
+                        demandOption: true,
+                    })
+                    .check((argv, options) =>{
+                        if(isNaN(argv.b))
+                        { 
+                            throw 'la base tiene que ser un Número'
+                        }
+                    })
+                    .argv
 console.clear();
 
 let indice = 1
@@ -15,8 +27,9 @@ let indice = 1
 
 /* console.log(process.argv); */
 
-/* console.log(base1); */
+ console.log('base: yargs', argv);
 
+ 
 
 /*  salida = crearArchivo(indice, base).then(
     archivo => console.log(archivo)
