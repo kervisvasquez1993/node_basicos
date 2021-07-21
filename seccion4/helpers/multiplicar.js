@@ -1,18 +1,19 @@
 const fs = require("fs");
-const crearArchivo = async (base, listar) => 
+const colors = require("colors");
+const crearArchivo = async (base, listar, incidencia) => 
 {
     try
      {
         let salida = '',
-        indice = 0
+        inicio = 1
         if(listar)
         {
-            while(indice <= 10)
+            while(inicio <= incidencia)
             {
                 
-                salida += multiplicarPorCinco(indice,base);
-                console.log(multiplicarPorCinco(indice,base));
-                indice ++
+                salida += multiplicarPorCinco(inicio,base);
+                console.log(multiplicarPorCinco(inicio,base));
+                inicio ++
             }
             
         }
@@ -29,9 +30,9 @@ const crearArchivo = async (base, listar) =>
 }
 
 
-const multiplicarPorCinco = (indice, base = 1) => 
+const multiplicarPorCinco = (inicio, base = 1) => 
 {
-    return `${indice} X ${base} = ${indice * base} \n` 
+    return `${inicio} ${'X'.green} ${base} = ${inicio * base} \n` 
     
 }
 
