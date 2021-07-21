@@ -5,33 +5,32 @@ const argv = require('yargs')
                         alias: 'base',
                         type : 'number',
                         demandOption: true,
+                        default: 1
+                    })
+                    
+                    .option('l', {
+                        alias: 'listar',
+                        type: 'boolean',
+                        demandOption: true,
+                        default: false,
                     })
                     .check((argv, options) =>{
                         if(isNaN(argv.b))
                         { 
-                            throw 'la base tiene que ser un Número'
+                            throw ('la base tiene que ser un Número')
                         }
+                       
+                        
+                        return true
                     })
                     .argv
-console.clear();
 
-let indice = 1
-     base   = 5 
-/*   */
-  /*   console.log(
-            `
-                =================================
-                       TABLA DEL ${base}
-                =================================
-            `  ) */
 
-/* console.log(process.argv); */
+let base   = argv.b ,
+    listar = argv.l
 
- console.log('base: yargs', argv);
-
- 
-
-/*  salida = crearArchivo(indice, base).then(
+salida = crearArchivo(base, listar).then
+(
     archivo => console.log(archivo)
 )
-  */
+   
