@@ -17,7 +17,7 @@ const crearArchivo = async (base, listar, incidencia) =>
             }
             
         }
-        fs.writeFileSync(`tabla-${base}.txt`, salida) 
+        fs.writeFileSync(`./salida/tabla-${base}.txt`, salida) 
        
          return `Fue creado la tabla del ${base}`;  
         
