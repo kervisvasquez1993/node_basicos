@@ -56,8 +56,8 @@ const pausa = async () =>
 {
     const questions = [
         {
-            type : 'input',
-            name  : 'enter',
+            type     : 'input',
+            name     : 'enter',
             message  : `Presione enter para continuar \n` ,
         }
     ]
@@ -67,10 +67,11 @@ const pausa = async () =>
 const leerInput = async (message) =>{
     const questions = [
         {
-            tyoe: 'input',
+            type: 'input',
             name: 'desc',
             message,
-            validate(value) {
+            validate(value) 
+            {
                 if(value.length === 0)
                 {
                     return 'Por Favor ingrese un valor'
