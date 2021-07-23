@@ -1,11 +1,23 @@
-const http = require('http');
-http.createServer((request, response) => 
-{
-    response.write('hola mundo');
+const express = require('express')
+const app = express()
+const port = 8003
 
-    response.end();
-    
+//servir contenido estatico 
+
+app.use(express.static('public')) 
+ 
+app.get('/',  (req, res) =>  {
+  res.send('Hello World')
 })
-.listen(8080)
 
-console.log('escuchando en el cuerpo')
+app.get('/hola',  (req, res) =>  {
+    res.send('hola mundo desde express')
+  })
+
+  app.get('*',  (req, res) =>  {
+    res.sendFile(__dirname +'/public/404.html');
+  })
+ 
+app.listen(port, () => {
+  console.log(`corriendo por el puerto http://localhost:${port}`)
+})
