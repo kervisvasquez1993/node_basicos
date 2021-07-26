@@ -10,7 +10,7 @@ const {
 const router = Router()
 /* metodo get de nuestra api */
   router.get('/', usersGet);
-  router.put('/', usersPut);
+  router.put('/:id', usersPut);
   router.post('/', usersPost);
   router.delete('/', usersDeleted);
 

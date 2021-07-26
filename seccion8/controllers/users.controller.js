@@ -11,9 +11,11 @@ function usersGet(req, res)
 
   function usersPut(req, res)
   {
+    const id = req.params.id
     res.json({
         
-        'msg' : "put desde el controlador "
+        'msg' : "put desde el controlador ",
+        id
     })
   }
 
