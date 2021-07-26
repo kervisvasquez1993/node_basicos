@@ -19,9 +19,12 @@ function usersGet(req, res)
 
   function usersPost(req, res)
   {
+const data = req.body;
+
     res.json({
         
-        'msg' : "post desde el controlador "
+        'msg' : "post desde el controlador ",
+         data
     })
   }
 
