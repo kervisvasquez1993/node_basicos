@@ -23,7 +23,28 @@ class Server {
 
     router(){
         this.app.get('/api', function (req, res)  {
-            res.send('Hello World')
+            res .json({
+                
+                'msg' : "get API"
+            })
+          })
+          this.app.put('/api', function (req, res)  {
+            res .json({
+                
+                'msg' : "put API"
+            })
+          })
+          this.app.post('/api', function (req, res)  {
+            res .json({
+                
+                'msg' : "post API"
+            })
+          })
+          this.app.delete('/api', function (req, res)  {
+            res .json({
+                
+                'msg' : "delete API"
+            })
           })
     }
 
