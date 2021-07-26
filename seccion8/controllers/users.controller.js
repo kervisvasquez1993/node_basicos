@@ -1,10 +1,16 @@
 const { respose } = require('express')
-function usersGet(req, res)  
+function usersGet(req , res )  
 {
+
+  const {q, name} = req.query
     
     res.json({
         
-        'msg' : "getApi desde el controlador "
+        'msg' : "getApi desde el controlador ",
+         data : {
+           q,
+           name
+         }
     })
   }
 
@@ -15,7 +21,8 @@ function usersGet(req, res)
     res.json({
         
         'msg' : "put desde el controlador ",
-        id
+        id,
+        
     })
   }
 
