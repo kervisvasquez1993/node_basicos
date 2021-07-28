@@ -8,25 +8,17 @@ class Server {
         this.app = express()
         this.PORT = process.env.PORT
         this.usersRoutePath = '/api/users'
-
         this.database();
         //Middlewares
         this.middleware();
-
         //rutas de mi aplicacion
-
-
         this.router();
     }
-
     //conectar a base de datos
-
     async database()
     {
         await dbConnection();
     }
- 
-
     middleware()
     {
         this.app.use(cors())
