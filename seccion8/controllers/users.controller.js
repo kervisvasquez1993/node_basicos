@@ -35,15 +35,6 @@ function usersGet(req , res )
 
   async function usersPost(req, res)
   {
-    const error = validationResult(req);
-    if(!error.isEmpty()) {
-      return res.status(400).json(error);
-    }
-     
-
-
-
-
     const {nombre, correo, password, role} = req.body;
     const user = new User({nombre, correo,password, role});
     /* validacion de datos */
