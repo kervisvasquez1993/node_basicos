@@ -1,17 +1,31 @@
-const Clientes = require('../Models/Clientes')
+const Clientes = require("../Models/Clientes");
 // agrega un nuevo cliente
 
-exports.nuevoCliente = async (req, res,next) => {
-    const cliente = new Clientes(req.body);
+exports.nuevoCliente = async (req, res, next) => {
+    for (let i = 0; i <= 50; i++) {
+        let data = { ...req.body, email: req.body.email + i };
 
-    try{
-        // almacenar el registro
-        await cliente.save();
-        res.json({mensaje: 'Se agregao nuevo cliente' })
+        const cliente = new Clientes(data);
+
+        try {
+            // almacenar el registro
+            await cliente.save();
+            
+        } catch (error) {
+            res.json(error);
+            next();
+        }
     }
-    catch(error)
-    {
-        console.log(error);
-        next();
+
+    res.json({ mensaje: "Se agregao nuevo cliente" });
+};
+
+exports.mostrarCliente = async (req, res, next) => {
+    try {
+        const clientes = await Clientes.find({});
+
+        res.json({ data: clientes });
+    } catch (error) {
+        res.json({ data: error });
     }
-}
+};
