@@ -11,5 +11,7 @@ module.exports = function(){
     router.get('/clientes/:idCliente', clienteController.showCliente);
     // update
     router.put('/clientes/:idCliente', clienteController.updateCliente);
+    // eliminar registro
+    router.delete('/clientes/:idCliente', clienteController.removeCliente);
     return router;
 }

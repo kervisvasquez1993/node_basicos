@@ -2,7 +2,7 @@ const Clientes = require("../Models/Clientes");
 // agrega un nuevo cliente
 
 exports.nuevoCliente = async (req, res, next) => {
-    for (let i = 0; i <= 50; i++) {
+    /* for (let i = 0; i <= 50; i++) {
         let data = { ...req.body, email: req.body.email + i };
 
         const cliente = new Clientes(data);
@@ -15,7 +15,17 @@ exports.nuevoCliente = async (req, res, next) => {
             res.json(error);
             next();
         }
-    }
+    } */
+    const cliente = new Clientes(req.body);
+
+        try {
+            // almacenar el registro
+            await cliente.save();
+            
+        } catch (error) {
+            res.json(error);
+            next();
+        }
 
     res.json({ mensaje: "Se agregao nuevo cliente" });
 };
@@ -35,8 +45,8 @@ exports.showCliente = async (req, res, next) =>{
     const cliente = await Clientes.findById(req.params.idCliente);
     if(!cliente)
     {
-        res.json({data : 'Ese cliente no existe'});
-        next();
+        return res.json({data : 'Ese cliente no existe'});
+        
     }
     // mostarr el cliente
     res.json(cliente);
@@ -45,18 +55,34 @@ exports.showCliente = async (req, res, next) =>{
 exports.updateCliente = async (req, res, next) => 
 {
     try{
-        const cliente = await Clientes.findOneAndUpdate({ 
+        const cliente = await Clientes.findByIdAndUpdate({ 
             _id : req.params.idCliente},
             req.body, {
                 new : true
             });
 
             // mostrar cliente
-            res.json(cliente);
+           return  res.json(cliente);
     }
     catch(error)
     {
       console.log(error);
       next();
     }
+}
+// elimina el cliente por su id
+exports.removeCliente = async (req, res, next) => 
+{
+        try
+        {
+            await Clientes.findOneAndDelete({_id : req.params.idCliente});
+            return res.json({
+                data : 'Cliente eliminado'
+            });
+        }
+        catch (error)
+        {
+            console.log(error);
+            next();
+        }
 }
