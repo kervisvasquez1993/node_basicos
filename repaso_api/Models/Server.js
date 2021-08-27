@@ -3,7 +3,16 @@ class Server {
     constructor() {
         this.app = express();
         this.port = process.env.PORT;
+
+        // MIDDLEWARES
+        this.middleware();
+        // RUTAS DE MI APLICACION
         this.routes();
+    }
+
+    middleware() {
+        // direcctorio publico
+        this.app.use(express.static('public'))
     }
 
     routes() {
