@@ -1,0 +1,12 @@
+require('dotenv').config();
+/* configuracion del servidor */
+const express = require('express')
+const app = express()
+ 
+app.get('/', function (req, res) {
+  res.send('Hello World')
+})
+ 
+app.listen(process.env.PORT, () => {
+    console.log('corriendo  por el puerto:', process.env.PORT)
+})
