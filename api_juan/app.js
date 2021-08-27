@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: true}));
 
 
 
-app.use('/', router());
+app.use('/api', router());
 
 //puerto
 app.listen(port, () => {
