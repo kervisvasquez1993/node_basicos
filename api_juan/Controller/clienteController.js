@@ -75,7 +75,7 @@ exports.removeCliente = async (req, res, next) =>
 {
         try
         {
-            await Clientes.findOneAndDelete({_id : req.params.idCliente});
+            await Clientes.findOneAndRemove({_id : req.params.idCliente});
             return res.json({
                 data : 'Cliente eliminado'
             });
