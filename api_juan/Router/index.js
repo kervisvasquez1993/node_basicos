@@ -9,6 +9,8 @@ module.exports = function(){
     // agregar nuevos clientes via post
     router.post('/clientes', clienteController.nuevoCliente);
     
-    
+    // get show client
+
+    router.get('/clientes/:idCliente', clienteController.showClientes)
     return router;
 }
