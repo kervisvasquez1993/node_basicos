@@ -1,9 +1,11 @@
-const { response, request } = require("express");
-const userGet = (req, res = response) => {
-    res.json({ data: "get api - controlador" });
+const { response, request = request } = require("express");
+const userGet = (req = request, res = response) => {
+    const query = req.query; /* se puede desectructurar */
+    res.json({data : query});
+
 };
 
-const userPost = (req = request, res = response) => {
+const userPost = (req, res = response) => {
     const body = req.body;
 
     return res.json({
@@ -11,11 +13,15 @@ const userPost = (req = request, res = response) => {
     });
 };
 
-const userPut = (req = request, res = response) => {
-    res.json({ data: "put api - controlador" });
+const userPut = (req, res = response) => {
+    const id = req.params.idUser;
+
+    return res.json({
+        data : id
+    })
 };
 
-const userDelete = (req = request, res = response) => {
+const userDelete = (req, res = response) => {
     res.json({ data: "delete api - controlador" });
 };
 
