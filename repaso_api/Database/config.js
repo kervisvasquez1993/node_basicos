@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const dbConnection = async () => {
     try {
         
-        await mongoose.connect("mongodb://localhost/api_fernando", {
+        /* mongodb://localhost/api_fernando */
+        await mongoose.connect("mongodb://localhost/api-rest-fernando", {
             useNewUrlParser: true,
             useFindAndModify: true,
             useCreateIndex : true,
