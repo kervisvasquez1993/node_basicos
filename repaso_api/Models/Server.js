@@ -5,7 +5,7 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         // PATH
-        this.user = '/api/users'
+        this.userPath = '/api/users'
 
         // MIDDLEWARES
         this.middleware();
@@ -15,12 +15,17 @@ class Server {
 
     middleware() {
         this.app.use(cors());
+
+        // parseo de informacion
+
+        this.app.use(express.json())
+        
         // direcctorio publico
         this.app.use(express.static('public'))
     }
 
     routes() {
-        this.app.use('/api/users', require('../Router/UserRouter'));
+        this.app.use(this.userPath, require('../Router/UserRouter'));
     }
     listen() {
         this.app.listen(this.port, () => {
