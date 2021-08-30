@@ -5,9 +5,9 @@ const dbConnection = async () => {
         /* mongodb://localhost/api_fernando */
         await mongoose.connect("mongodb://localhost/api-rest-fernando", {
             useNewUrlParser: true,
-            useFindAndModify: true,
+            /* useFindAndModify: true,
             useCreateIndex : true,
-            useFindAndModify: false
+            useFindAndModify: false */
         });
 
         console.log('conexión a la base de datos establecida')
