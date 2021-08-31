@@ -1,16 +1,28 @@
-const { response, request = request } = require("express");
+const { response, request } = require("express");
+const User = require("../Models/User");
 const userGet = (req = request, res = response) => {
     const query = req.query; /* se puede desectructurar */
     res.json({data : query});
 
 };
 
-const userPost = (req, res = response) => {
+const userPost = async (req = request, res = response, next) => {
+    
     const body = req.body;
+    try
+    {
+    const usuario = new User(body);
 
+    await usuario.save();
     return res.json({
-        data : body,
+        data : usuario
     });
+    }
+    catch(error)
+    {
+        throw(error);
+        return next();
+    }
 };
 
 const userPut = (req, res = response) => {
