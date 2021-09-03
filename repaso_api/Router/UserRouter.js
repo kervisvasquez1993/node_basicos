@@ -2,8 +2,12 @@ const { Router } = require("express");
 const { check } = require("express-validator");
 
 /* configuracion de rol */
-const {esRolValido, existEmail} = require("../helpers/dbValidator");
-const {validarCampos} = require("../middlewares/validaCampo");
+const {
+    esRolValido,
+    existEmail,
+    validateUserExit,
+} = require("../helpers/dbValidator");
+const { validarCampos } = require("../middlewares/validaCampo");
 const {
     userGet,
     userPost,
@@ -17,16 +21,27 @@ router.post(
     [
         check("email", "el correo no es valido").isEmail(),
         check("email").custom(existEmail),
-        check('name' , "el nombre es requerido").not().isEmpty(),
-        check("password", "el password es mas de 6 letras").isLength({min:6}),
+        check("name", "el nombre es requerido").not().isEmpty(),
+        check("password", "el password es mas de 6 letras").isLength({
+            min: 6,
+        }),
         /* check("rol", "No es un rol permitido").isIn(['ADMIN_ROL', "USER_ROLE"]), */
-        check('rol').custom(esRolValido),
-        validarCampos
-
+        check("rol").custom(esRolValido),
+        validarCampos,
     ],
     userPost
 );
-router.put("/:idUser", userPut);
+router.put(
+    "/:idUser",
+
+    [
+        // check("idUser", "El id no es valido").isMongoId(),
+        check("idUser").custom(validateUserExit),
+        check("rol").custom(esRolValido),
+        validarCampos,
+    ],
+    userPut
+);
 router.delete("/", userDelete);
 
 module.exports = router;

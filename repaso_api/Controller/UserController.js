@@ -42,7 +42,7 @@ const userPost = async (req = request, res = response, next) => {
 
 const userPut = async (req, res = response) => {
     const id = req.params.idUser;
-    const { password, google, email,...resto} = req.body;
+    const {_id, password, google, email,...resto} = req.body;
     // TODO: VALIDADR CONTRA BASE DE DATOS
     if(password){
         const salt = bcryptjs.genSaltSync();

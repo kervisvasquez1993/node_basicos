@@ -15,7 +15,20 @@ const existEmail = async (email = '') => {
     }
 };
 
+const validateUserExit = async (idUser) => {
+    
+    const userExist = await User.findById(idUser);
+    console.log(userExist);
+    if(!userExist)
+    {
+        throw new Error(`El ID ${id} no esta asociado a ningun usuario`);
+        
+    }
+    
+}
+
 module.exports = {
     esRolValido,
     existEmail,
+    validateUserExit
 };
