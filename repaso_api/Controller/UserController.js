@@ -58,14 +58,16 @@ const userPut = async (req, res = response) => {
 
 const userDelete = async (req, res = response) => {
 
-    const {idUser} = req.params
+    const {idUser} = req.params;
+    const uid = req.uid
 
     /* borrar de la base de datos */
 
     /* const user = await User.findByIdAndDelete(idUser) */
 
     const user = await User.findByIdAndUpdate(idUser, {status : false})
-    res.json({ data: user});
+    const usertAuthenticate = req.user;
+    res.json({ data: user, usertAuthenticate});
 };
 
 module.exports = {
