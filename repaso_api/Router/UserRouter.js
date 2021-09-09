@@ -1,15 +1,13 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-
+const {esAdminRole, validarRol, validarJWT, validarCampos} = require("../middlewares")
 /* configuracion de rol */
 const {
     esRolValido,
     existEmail,
     validateUserExit,
 } = require("../helpers/dbValidator");
-const { validarCampos } = require("../middlewares/validaCampo");
-const { validarJWT } = require("../middlewares/validarJWT");
-const {esAdminRole, validarRol} = require("../middlewares/validar-admin");
+
 const {
     userGet,
     userPost,
