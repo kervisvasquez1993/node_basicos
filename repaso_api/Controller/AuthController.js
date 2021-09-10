@@ -2,7 +2,7 @@ const { response } = require("express");
 const bcryptjs = require("bcryptjs");
 const User = require("../Models/User");
 const { generarJWT } = require("../helpers/jwt");
-const {googleVerify} = require("../helpers/google-verify")
+const { googleVerify } = require("../helpers/google-verify");
 const login = async (req, res = response) => {
     const { email, password } = req.body;
     try {
@@ -42,18 +42,41 @@ const login = async (req, res = response) => {
     res.json({ mensaje: "login ok" });
 };
 
+/* metodo para el singIn de google */
 const googleSingIn = async (req, res = response) => {
     const { id_token } = req.body;
-    const googleUser =  await googleVerify(id_token)
-    const {email, name, picture, } = googleUser
-    console.log(email,name,picture);
+    
     try {
+        const { email, name, img } = await googleVerify(id_token);
+        let user = await User.findOne({email});
+        if (!user) {
+             const data = {
+                 name,
+                 email,
+                 img,
+                 password : "123456789",
+                 img,
+                 google : true,
+             };
+             
+             user = new User(data);
+              await user.save(); 
+             console.log("se registraron los users");
+            
+        }
+        // si el usuario en base de datos
+        if (!user.status) {
+            return res.status(401).json({
+                data: "habla con el admin",
+            });
+        }
         
-        res.json({ data: id_token });
+        const token = await generarJWT(user.id);
+        return res.json({ data: user, token });
     } catch (err) {
         res.status(400).json({
-            data: "token no valido"
-        })
+            data: "token no valido",
+        });
     }
 };
 
