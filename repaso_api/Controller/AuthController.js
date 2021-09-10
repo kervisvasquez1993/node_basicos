@@ -2,6 +2,7 @@ const { response } = require("express");
 const bcryptjs = require("bcryptjs");
 const User = require("../Models/User");
 const { generarJWT } = require("../helpers/jwt");
+const {googleVerify} = require("../helpers/google-verify")
 const login = async (req, res = response) => {
     const { email, password } = req.body;
     try {
@@ -22,11 +23,9 @@ const login = async (req, res = response) => {
         // verificar la contraseña
         const validPassword = bcryptjs.compareSync(password, user.password);
         if (!validPassword) {
-            return res
-                .status(400)
-                .json({
-                    data: "Usuario / Passowrd no son correctro- password",
-                });
+            return res.status(400).json({
+                data: "Usuario / Passowrd no son correctro- password",
+            });
         }
 
         // generar el jwt
@@ -43,6 +42,22 @@ const login = async (req, res = response) => {
     res.json({ mensaje: "login ok" });
 };
 
+const googleSingIn = async (req, res = response) => {
+    const { id_token } = req.body;
+    const googleUser =  await googleVerify(id_token)
+    const {email, name, picture, } = googleUser
+    console.log(email,name,picture);
+    try {
+        
+        res.json({ data: id_token });
+    } catch (err) {
+        res.status(400).json({
+            data: "token no valido"
+        })
+    }
+};
+
 module.exports = {
     login,
+    googleSingIn,
 };
