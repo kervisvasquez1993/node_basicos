@@ -14,9 +14,9 @@ const {
 
 /*  {{url}}/api/category*/
 router.get('/', CategoryIndex);
+router.get('/:id', CategoryShow);
 router.post('/', CategoryPost);
 router.put('/:id', CategoryPut);
-router.get('/:id', CategoryShow);
 router.delete('/:id', CategoryDelete);
 
 module.exports = router
