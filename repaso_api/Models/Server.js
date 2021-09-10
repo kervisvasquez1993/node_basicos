@@ -9,6 +9,7 @@ class Server {
         // PATH
         this.userPath = '/api/users';
         this.authPath =  '/api/auth';
+        this.categoryPath = '/api/category';
 
         // conectar a la base de datos 
         this.conectarDB();
@@ -36,7 +37,8 @@ async conectarDB()
 
     routes() {
         this.app.use(this.userPath, require('../Router/UserRouter'));
-        this.app.use(this.authPath, require('../Router/AuthRouter'))
+        this.app.use(this.authPath, require('../Router/AuthRouter'));
+        this.app.use(this.categoryPath, require('../Router/CategoryRouter'));
     }
     listen() {
         this.app.listen(this.port, () => {
