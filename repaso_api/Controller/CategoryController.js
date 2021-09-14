@@ -5,7 +5,11 @@ const bcryptjs = require("bcryptjs");
         next();
     }
     CategoryPost = async(req = request, res = response, next) => {
-        res.json({data : "post desde category"});
+        const name = req.body.name.toUpperCase();
+        const nameDB = await Category.findOne({name});
+        if(!nameDB){
+            return res.status(400).json({data : `la categoria ${nameDB.name } ya existe`})
+        }
         next();
     },
     CategoryPut = async(req = request, res = response, next) => {
