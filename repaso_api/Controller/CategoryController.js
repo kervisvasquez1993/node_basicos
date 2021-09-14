@@ -51,7 +51,7 @@ const CategoryPut = async (req = request, res = response, next) => {
 const CategoryDelete = async (req = request, res = response, next) => {
     const id = req.params.id;
     const categoryDeleted = await Category.findByIdAndUpdate(id, {status : false}, {new : true})
-    res.json({ data: categoryDeleted });
+    res.status(201).json({ data: categoryDeleted });
     next();
 };
 module.exports = {

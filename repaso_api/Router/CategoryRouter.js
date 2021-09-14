@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { validarJWT, validarCampos } = require("../middlewares");
+const { validarJWT, validarCampos, esAdminRole } = require("../middlewares");
 const { validarCategoryExist } = require("../helpers/dbValidator");
 const router = Router();
 // crear metodos en los controladores
@@ -45,7 +45,14 @@ router.put(
 // borrar categoria - privado - solo los admin pueden hacer esta accion
 router.delete(
     "/:id",
-    [check("id").custom(validarCategoryExist), validarCampos],
+
+    [
+        validarJWT,
+        esAdminRole,
+        check("id", "No es un id valido").isMongoId(),
+        check("id").custom(validarCategoryExist),
+        validarCampos,
+    ],
     CategoryDelete
 );
 
