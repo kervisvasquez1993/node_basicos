@@ -11,6 +11,8 @@ class Server {
             userPath : '/api/users',
             authPath :  '/api/auth',
             categoryPath : '/api/category',
+            productPath : '/api/product',
+
         }
        
 
@@ -43,6 +45,7 @@ async conectarDB()
         this.app.use(this.paths.authPath, require('../Router/AuthRouter'));
         this.app.use(this.paths.categoryPath, require('../Router/CategoryRouter'));
         this.app.use(this.paths.userPath, require('../Router/UserRouter'));
+        this.app.use(this.paths.productPath, require('../Router/ProductRouter'));
         
         
     }
