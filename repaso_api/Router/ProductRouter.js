@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { validarJWT, validarCampos } = require("../middlewares");
+const { validarJWT, validarCampos, esAdminRole } = require("../middlewares");
 const {
     ProductIndex,
     ProductStore,
@@ -47,6 +47,12 @@ router.put("/:id", [
     validarCampos,
 ], ProductUpdate);
 
-router.delete("/:id", ProductDelete);
+router.delete("/:id",[
+    validarJWT,
+    esAdminRole,
+    check("id", "el Id no es valido").isMongoId(),
+    validarCampos,
+
+], ProductDelete);
 
 module.exports = router;

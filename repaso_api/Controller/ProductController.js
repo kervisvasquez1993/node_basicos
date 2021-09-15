@@ -79,7 +79,13 @@ const ProductShow = async (req = request, res = response, next) => {
 };
 
 const ProductDelete = (req = request, res = response, next) => {
-    res.json({ data: "hola desde Delete" });
+    const id = req.params.id;
+    const product = await Category.findByIdAndUpdate(id, {status : false}, {new : true})
+    if(!product)
+    {   
+        return res.status(404).json({data : `el ID ${id} no esta asociado a ningun producto`})
+    }
+    res.status(201).json({ data: product });
 };
 
 module.exports = {
