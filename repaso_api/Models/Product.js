@@ -6,22 +6,37 @@ const ProductSchema = Schema({
         required: [true, "El Nombre es requerido"],
         unique: true,
     },
+    precing: {
+        type: Number,
+        default: 0,
+    },
     status: {
         type: Boolean,
         default: true,
-        required : true,
+        required: true,
     },
-    user : {
+    user: {
         type: Schema.Types.ObjectId,
-        ref : "User",
-        required : true
-    }
-
+        ref: "User",
+        required: true,
+    },
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: "Category",
+        required: true,
+    },
+    description: {
+        type: String,
+    },
+    available: {
+        type: Boolean,
+        default: true,
+    },
 });
 
 ProductSchema.methods.toJSON = function () {
     const { __v, status, _id, ...product } = this.toObject();
-    product.id = _id; 
+    product.id = _id;
     return product;
 };
 
