@@ -19,7 +19,7 @@ class Server {
 
         // conectar a la base de datos 
         this.conectarDB();
-
+        
         // MIDDLEWARES
         this.middleware();
         // RUTAS DE MI APLICACION
