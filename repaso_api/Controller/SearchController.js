@@ -6,24 +6,19 @@ const coleccionesPermitidas = ["user", "category", "product", "roles"];
 const SearchUser = async (terminos = "", res = response) => {
     const isMongoId = ObjectId.isValid(terminos);
     console.log(terminos, "desde function");
-    if (!isMongoId) {
-        return res.json({ data: "ID no valido" });
-    }
-    const user = await User.findOne({ _id: terminos });
+    if (isMongoId) {
+        const user = await User.findById({ terminos });
 
-    if(user)
-    {
-        return res.json({ result: [
-            user
-        ] });
+        return res.json({ result: (user) ? [user] : `No existe ningun susuario asociado al ID ${terminos}`});
     }
-    else{
-        
-    }
-    
+
+    const regex = new RegExp(terminos, 'i')
+    const user = await User.find({name : regex})
+
+    res.json({data : user})
+
+
 };
-
-const SearchCategory = async ( termino = "") => {}
 
 const search = (req = request, res = response) => {
     const { collection, termino } = req.params;
