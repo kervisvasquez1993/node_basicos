@@ -13,7 +13,11 @@ const SearchUser = async (terminos = "", res = response) => {
     }
 
     const regex = new RegExp(terminos, 'i')
-    const user = await User.find({name : regex})
+    const user = await User.find({
+        $or : [{name : regex}, { email : regex}],
+        $and : [{status : true}]
+
+    })
 
     res.json({data : user})
 
