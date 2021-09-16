@@ -11,6 +11,7 @@ const ProductIndex = async (req = request, res = response, next) => {
     const query = { status: true };
     const product = Product.find(query)
         .populate("user", "name")
+        .populate("category", "name")
         .skip(Number(desde))
         .limit(Number(limit));
 
@@ -25,17 +26,16 @@ const ProductIndex = async (req = request, res = response, next) => {
  */
 const ProductStore = async (req = request, res = response, next) => {
     /* validar que la categoria no exista */
-    const name1= req.body.name.toUpperCase();
-    const nameDB = await Product.findOne({name : name1});
-    if(nameDB)
-    {
-        return res.json({data : `El Producto ${nameDB.name} ya existe`});
+    const name1 = req.body.name.toUpperCase();
+    const nameDB = await Product.findOne({ name: name1 });
+    if (nameDB) {
+        return res.json({ data: `El Producto ${nameDB.name} ya existe` });
     }
     /* creacion de const data */
     const { status, user, ...body } = req.body;
     const data = {
         name: body.name.toUpperCase(),
-        precing : body.precing,
+        precing: body.precing,
         description: body.description,
         category: body.category,
         user: req.user.id,
@@ -51,39 +51,45 @@ const ProductStore = async (req = request, res = response, next) => {
 
 const ProductUpdate = async (req = request, res = response, next) => {
     const id = req.params.id;
-    const {status, user, ...resto} = req.body;
-    resto.name = resto.name.toUpperCase();
-    // const product = await Product.findByIdAndUpdate(id, resto, {new : true});
-    const product = await Product.findByIdAndUpdate(id, resto, {new : true});
-    if(!product)
-    {   
-        return res.status(404).json({data : `el ID ${id} no esta asociado a ningun producto`})
+    const { status, user, ...resto } = req.body;
+    if (resto.name) {
+        resto.name = resto.name.toUpperCase();
     }
-    res.status(201).json({ data: product});
 
-    
+    // const product = await Product.findByIdAndUpdate(id, resto, {new : true});
+    const product = await Product.findByIdAndUpdate(id, resto, { new: true });
+    if (!product) {
+        return res
+            .status(404)
+            .json({ data: `el ID ${id} no esta asociado a ningun producto` });
+    }
+    res.status(201).json({ data: product });
 };
 
 const ProductShow = async (req = request, res = response, next) => {
     const id = req.params.id;
     const product = await Product.findById(id);
-    if(!product)
-    {   
-        return res.status(404).json({data : `el ID ${id} no esta asociado a ningun producto`})
+    if (!product) {
+        return res
+            .status(404)
+            .json({ data: `el ID ${id} no esta asociado a ningun producto` });
     }
     /* console.log(product);
     product.update(); */
-    res.json({data : product})
-    
-    
+    res.json({ data: product });
 };
 
-const ProductDelete = (req = request, res = response, next) => {
+const ProductDelete = async (req = request, res = response, next) => {
     const id = req.params.id;
-    const product = await Category.findByIdAndUpdate(id, {status : false}, {new : true})
-    if(!product)
-    {   
-        return res.status(404).json({data : `el ID ${id} no esta asociado a ningun producto`})
+    const product = await Product.findByIdAndUpdate(
+        id,
+        { status: false },
+        { new: true }
+    );
+    if (!product) {
+        return res
+            .status(404)
+            .json({ data: `el ID ${id} no esta asociado a ningun producto` });
     }
     res.status(201).json({ data: product });
 };
