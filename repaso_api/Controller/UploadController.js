@@ -9,7 +9,6 @@ const UploadFile = async (req, res = response) => {
       return;
     }
   
-    console.log('req.files >>>', req.files); // eslint-disable-line
   
     sampleFile = req.files.sampleFile;
   
