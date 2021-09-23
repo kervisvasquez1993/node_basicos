@@ -1,7 +1,10 @@
 import { Request, Response } from "express";
-export const usersIndex = (req: Request, res: Response) => {
+import User from "../model/User";
+export const usersIndex = async(req: Request, res: Response) => {
+    const user = await User.findAll();
+    
     res.json({
-        data: "index de usuario",
+        data: user,
     });
 };
 
