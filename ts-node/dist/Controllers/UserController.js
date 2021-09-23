@@ -76,12 +76,25 @@ const userUpdate = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.userUpdate = userUpdate;
-const userDelete = (req, res) => {
-    const { id } = req.params;
-    res.json({
-        data: "delete update",
-        id,
-    });
-};
+const userDelete = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+        const user = yield User_1.default.findByPk(id);
+        if (!user) {
+            return res.status(404).json({
+                data: `El usuario con el id : ${id} no esta saociado a ningun usuario`,
+            });
+        }
+        yield user.update({ status: false });
+        res.json({ data: user });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            data: `Hable con el admin`,
+        });
+    }
+});
 exports.userDelete = userDelete;
 //# sourceMappingURL=UserController.js.map

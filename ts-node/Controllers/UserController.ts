@@ -66,11 +66,24 @@ export const userUpdate = async (req: Request, res: Response) => {
     }
 };
 
-export const userDelete = (req: Request, res: Response) => {
-    const { id } = req.params;
+export const userDelete = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const { body } = req;
+        const user = await User.findByPk(id);
+        if (!user) {
+            return res.status(404).json({
+                data: `El usuario con el id : ${id} no esta saociado a ningun usuario`,
+            });
+        }
 
-    res.json({
-        data: "delete update",
-        id,
-    });
+        await user.update({status : false});
+
+        res.json({ data: user });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            data: `Hable con el admin`,
+        });
+    }
 };
