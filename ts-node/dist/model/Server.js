@@ -8,19 +8,19 @@ const UserRouter_1 = __importDefault(require("../routers/UserRouter"));
 class Server {
     constructor() {
         this.apiPath = {
-            users: 'api/users'
+            users: "/api/users",
         };
         this.app = (0, express_1.default)();
-        this.port = process.env.PORT || '3000';
-        // definir mis rutas 
-        this.routes;
+        this.port = process.env.SERVER_PORT || "8005";
+        // definir mis rutas
+        this.routes();
     }
     routes() {
         this.app.use(this.apiPath.users, UserRouter_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {
-            console.log('listening on port');
+            console.log("corriendo  por el puerto:", this.port);
         });
     }
 }

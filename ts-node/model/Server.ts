@@ -1,27 +1,28 @@
-import express, {Application} from "express";
-import userRoutes from "../routers/UserRouter"
+import express, { Application } from "express";
+import userRoute from "../routers/UserRouter";
 class Server {
     private app: Application;
-    private port : string;
+    private port: string;
     private apiPath = {
-        users : 'api/users'
-    }
+        users: "/api/users",
+    };
     constructor() {
         this.app = express();
-        this.port = process.env.PORT || '3000';
+        this.port = process.env.SERVER_PORT || "8005" ;
         // definir mis rutas
-        this.routes
+         this.routes();
     }
 
-    routes(){
-        this.app.use(this.apiPath.users, userRoutes);
-    }
-    listen(){
-        this.app.listen(this.port, ()=>{
-            console.log('listening on port')
+     routes() {
+         this.app.use(this.apiPath.users, userRoute);
+     }
+   
+    listen() {
+        this.app.listen(this.port, () => {
+            console.log("corriendo  por el puerto:", this.port);
         });
     }
+   
 }
 
-
-export default  Server;
+export default Server;
