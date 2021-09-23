@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 export const usersIndex = (req: Request, res: Response) => {
     res.json({
-        data: "user",
+        data: "index de usuario",
     });
 };
 
 export const userShow = (req: Request, res: Response) => {
     const { id } = req.params;
     res.json({
-        data: "show users",
+        data: "show de usar",
         id,
     });
 };
@@ -16,7 +16,7 @@ export const userShow = (req: Request, res: Response) => {
 export const userPost = (req: Request, res: Response) => {
     const { body } = req;
     res.json({
-        data: "show users",
+        data: "post de user",
         body,
     });
 };
