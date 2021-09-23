@@ -9,7 +9,7 @@ const User = db.define('Users', {
         type : DataTypes.STRING
     },
     status : {
-        type : DataTypes.STRING
+        type : DataTypes.BOOLEAN
     },
 })
 

@@ -5,6 +5,7 @@ const db = new Sequelize('ts-node', "root", "Kervisvasquez1993", {
     dialect : "mysql",
     
 })
+db.sync({alter: true})
 
 
 export default db

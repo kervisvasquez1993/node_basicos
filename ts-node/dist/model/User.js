@@ -13,7 +13,7 @@ const User = db_1.default.define('Users', {
         type: sequelize_1.DataTypes.STRING
     },
     status: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.BOOLEAN
     },
 });
 exports.default = User;
