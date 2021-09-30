@@ -13,7 +13,7 @@ const UploadFile = async (req, res = response) => {
         return;
     }
     try {
-        const pathCompleto = await uploadFile(req.files, undefined, "texto");
+        const pathCompleto = await uploadFile(req.files, undefined, "imgs");
     res.json({
         data: "se subio el archivo correctamente",
         nameFile: pathCompleto,
