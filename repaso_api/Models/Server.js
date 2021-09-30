@@ -60,7 +60,7 @@ class Server {
             this.paths.productPath,
             require("../Router/ProductRouter")
         );
-        this.app.use(this.paths.uploadPath, require("../Router/UploadRouter"));
+        this.app.use(this.paths.uploadPath, require("../Router/UploadRouter")); 
         this.app.use(this.paths.searchPath, require("../Router/SearchRouter"));
     }
     listen() {
