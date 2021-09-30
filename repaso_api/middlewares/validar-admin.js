@@ -33,4 +33,5 @@ const validarRol = (...roles) => {
     };
 };
 
+
 module.exports = { esAdminRole, validarRol };

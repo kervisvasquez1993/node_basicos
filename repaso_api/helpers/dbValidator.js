@@ -37,9 +37,21 @@ const validarCategoryExist = async (id) => {
     return;
 };
 
+// validar collection
+const coleccionPermitida = (collection = "", collections = []) => {
+    const incluida = collections.includes(collection);
+
+    if (!incluida) {
+        throw new Error(`la colleccion ${collection} no es permitida, colecciones permitidas : ${collections}`);
+    }
+
+    return true;
+};
+
 module.exports = {
     esRolValido,
     existEmail,
     validateUserExit,
     validarCategoryExist,
+    coleccionPermitida,
 };
