@@ -4,7 +4,8 @@
     "express-fileupload": "^1.2.1",
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.8"
+    "mongoose": "^5.13.8",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "tslint": "^6.1.3",
