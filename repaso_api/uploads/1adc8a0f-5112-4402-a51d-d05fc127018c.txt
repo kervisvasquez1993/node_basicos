@@ -1,0 +1,31 @@
+﻿**configurar y programar controladores de la api rest de woocommerce para lograr que funcione la funcionalidad del carrito 
+**appbar cart icon cantidad de carrito,
+**actualizar la cantidad del articulo del carrito,
+**quitar producto del carrito,
+**actualizar carrito
+
+
+
+/*---------------------------Segundo Sprint -----------------------------*/
+
+programar modelos para extraer la informacion de los productos variables 
+
+
+/***-------------------------------- Tercer Sprint ----------------------------------------------*/
+
+programacion para integrar integrar paypal como pasarela de pago 
+
+/**------------------------------------------Cuarto sprint------------------------------------------------------------**/
+
+**creacion de ordenes 
+** procesar pedido
+** crear orden 
+**listar las ordenes
+
+
+/**---------------------------------------------quinto Sprint-------------------------------------**/ 
+
+
+**creacion de pagina de Myacaunt
+**creacion de pedido desde pagina mi cuenta
+**manejar respuesta de pedido de la pantalla d einicio 

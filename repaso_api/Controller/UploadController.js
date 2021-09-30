@@ -1,6 +1,5 @@
-
 const { response, request } = require("express");
-const {uploadFile} = require("../helpers")
+const { uploadFile } = require("../helpers");
 
 const UploadFile = async (req, res = response) => {
     let uploadPath;
@@ -13,11 +12,15 @@ const UploadFile = async (req, res = response) => {
         res.status(400).json({ data: "No ha seleccionado ningun archivo" });
         return;
     }
-
-   const pathCompleto = await  uploadFile(req.files)
-   res.json({
-     path : pathCompleto,
-   }) 
+    try {
+        const pathCompleto = await uploadFile(req.files, undefined, "texto");
+    res.json({
+        data: "se subio el archivo correctamente",
+        nameFile: pathCompleto,
+    });    
+    } catch (error) {
+        res.status(400).json({data : error});
+    }
     
 };
 
