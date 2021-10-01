@@ -5,14 +5,6 @@ const { User, Product } = require("../Models");
 const UploadFile = async (req, res = response) => {
     let uploadPath;
 
-    if (
-        !req.files ||
-        Object.keys(req.files).length === 0 ||
-        !req.files.archivos
-    ) {
-        res.status(400).json({ data: "No ha seleccionado ningun archivo" });
-        return;
-    }
     try {
         const pathCompleto = await uploadFile(req.files, undefined, "imgs");
         res.json({
@@ -26,12 +18,13 @@ const UploadFile = async (req, res = response) => {
 
 const updateFile = async (req, res) => {
     const { id, collection } = req.params;
+
     let modelo;
 
     switch (collection) {
         case "usuarios":
             modelo = await User.findById(id);
-            console.log(modelo)
+            console.log(modelo);
             if (!modelo) {
                 return res
                     .status(404)

@@ -7,6 +7,7 @@ const uploadFile = (
 ) => {
     return new Promise((resolve, reject) => {
         const { archivos } = file;
+
         const nombreCortado = archivos.name.split(".");
         const extension = nombreCortado[nombreCortado.length - 1];
         // validar la extension en el controlador
@@ -27,5 +28,4 @@ const uploadFile = (
     });
 };
 
-
-module.exports = {uploadFile}
+module.exports = { uploadFile };
